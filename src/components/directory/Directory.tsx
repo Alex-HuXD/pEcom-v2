@@ -6,7 +6,7 @@ interface DirectoryProps {
 }
 
 const Directory: React.FC<DirectoryProps> = ({ categories }) => {
-    console.log(categories)
+    
     return (
         <div className='directory-container'>
             {categories.map(category => (
