@@ -1,16 +1,13 @@
-import { Routes, Route, } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 
 import HomePage from './routes/homePage/HomePage'
 import Nav from './routes/navBar/NavBar'
-import SignIn from './routes/signin/Signin'
-
-
+import SignIn from './routes/signin/SignIn'
 
 const Shop = () => {
     return (
         <>
             <div>This is Shop</div>
-           
         </>
     )
 }
@@ -18,10 +15,10 @@ const Shop = () => {
 function App() {
     return (
         <Routes>
-            <Route path='/' element={<Nav />}>
+            <Route path="/" element={<Nav />}>
                 <Route index element={<HomePage />} />
-                <Route path='/shop' element={<Shop />} />
-                <Route path='/sign-in' element={<SignIn />} />
+                <Route path="shop" element={<Shop />} />
+                <Route path="sign-in" element={<SignIn />} />
             </Route>
         </Routes>
     )
