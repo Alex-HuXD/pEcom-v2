@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app'
-import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth'
+import { getAuth, signInWithPopup, GoogleAuthProvider, User } from 'firebase/auth'
 
 import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore'
 // Your web app's Firebase configuration
@@ -13,7 +13,7 @@ const firebaseConfig = {
 }
 
 // Initialize Firebase
-const firebaseApp = initializeApp(firebaseConfig)
+const app = initializeApp(firebaseConfig)
 
 const googleProvider = new GoogleAuthProvider()
 googleProvider.setCustomParameters({
@@ -25,13 +25,12 @@ export const signInWithGooglePopup = () => signInWithPopup(auth, googleProvider)
 
 export const db = getFirestore()
 
-export const createUserDocFromAuth = async userAuth => {
+export const createUserDocFromAuth = async (userAuth: User) => {
     const userDocRef = doc(db, 'users', userAuth.uid)
-    console.log(userDocRef)
 
     const userSnapshot = await getDoc(userDocRef)
 
-    // if user doesnt exsit, create user
+    // // if user doesnt exsit, create user
     if (!userSnapshot.exists()) {
         const { displayName, email } = userAuth
         const createAt = new Date()
